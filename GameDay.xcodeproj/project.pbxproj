@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1317950A8B9A9B0D3E9560BE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2BACED17C3CF9F22C41EF8 /* ContentView.swift */; };
 		19D95B13628EA86C2420712C /* ESPNClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1093846A2B37BF3AB2116B5 /* ESPNClient.swift */; };
+		3A995F4A2CBC3075191FE017 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05943E9A363CE4DB27D6507B /* Assets.xcassets */; };
 		3D69773395BB580D4D2EB390 /* CalendarService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0354FDF03E896283F5ABA077 /* CalendarService.swift */; };
 		551CB5CCF1C5A2C729E1C0A4 /* NextGameWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13DA4F4B0A9825D0CF45688 /* NextGameWidget.swift */; };
 		5ED4E5CEBCA7A537E35C09FE /* TeamSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064545F953CCC0FBABDDD88B /* TeamSelection.swift */; };
@@ -51,6 +52,7 @@
 
 /* Begin PBXFileReference section */
 		0354FDF03E896283F5ABA077 /* CalendarService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarService.swift; sourceTree = "<group>"; };
+		05943E9A363CE4DB27D6507B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		064545F953CCC0FBABDDD88B /* TeamSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSelection.swift; sourceTree = "<group>"; };
 		08D164ADE8C60B6F02EB1D97 /* FavoritesStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesStore.swift; sourceTree = "<group>"; };
 		23FBECA3CAD9853B776A2680 /* GameDay.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = GameDay.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -114,6 +116,7 @@
 		ECF67C172A2BEC112AD256D2 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				05943E9A363CE4DB27D6507B /* Assets.xcassets */,
 				0354FDF03E896283F5ABA077 /* CalendarService.swift */,
 				CB2BACED17C3CF9F22C41EF8 /* ContentView.swift */,
 				EC18DF045333412B4699FE4B /* GameDay.entitlements */,
@@ -133,6 +136,7 @@
 			buildConfigurationList = 3A83FA1ABDFBAF68E860047B /* Build configuration list for PBXNativeTarget "GameDay" */;
 			buildPhases = (
 				66F1B67162DFB9733C359B3C /* Sources */,
+				559ADA425D292DB05F8842A7 /* Resources */,
 				7E1BEA7784587649C1C1B82D /* Embed Foundation Extensions */,
 			);
 			buildRules = (
@@ -203,6 +207,17 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXResourcesBuildPhase section */
+		559ADA425D292DB05F8842A7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3A995F4A2CBC3075191FE017 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		1E5F7BBE6AB3EC9D814B7D02 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -264,6 +279,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = App/GameDay.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = App/Info.plist;
@@ -341,6 +357,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = App/GameDay.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = App/Info.plist;

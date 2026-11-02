@@ -116,6 +116,18 @@ private struct Logo: View {
     }
 }
 
+private struct CircleLogo: View {
+    let image: UIImage?
+    let league: League
+
+    var body: some View {
+        Logo(image: image, league: league)
+            .padding(7)
+            .frame(width: 54, height: 54)
+            .background(.white, in: Circle())
+    }
+}
+
 private struct LiveBadge: View {
     var body: some View {
         Text("LIVE")
@@ -133,7 +145,9 @@ private struct SmallView: View {
         VStack(alignment: .leading, spacing: 2) {
             HStack(alignment: .top) {
                 Logo(image: entry.teamLogo, league: entry.team.league)
-                    .frame(width: 40, height: 40)
+                    .padding(5)
+                    .frame(width: 42, height: 42)
+                    .background(.white, in: Circle())
                 Spacer()
                 if entry.game?.state == .live {
                     LiveBadge()
@@ -150,14 +164,14 @@ private struct SmallView: View {
                     .font(.caption2.weight(.semibold))
                     .opacity(0.8)
                 Text(game.timeLabel)
-                    .font(.title2.bold())
-                    .minimumScaleFactor(0.7)
+                    .font(.scoreboard(30))
+                    .minimumScaleFactor(0.6)
                 HStack(spacing: 4) {
                     Text(game.matchupPrefix).opacity(0.8)
                     Logo(image: entry.opponentLogo, league: game.league).frame(width: 16, height: 16)
-                    Text(game.opponent.shortName).lineLimit(1).minimumScaleFactor(0.7)
+                    Text(game.opponent.shortName.uppercased()).lineLimit(1).minimumScaleFactor(0.6)
                 }
-                .font(.subheadline.weight(.semibold))
+                .font(.scoreboard(15))
             } else {
                 Text(entry.team.shortName).font(.headline)
                 Text(entry.failed ? "Couldn't load schedule" : "No upcoming games")
@@ -176,10 +190,10 @@ private struct MediumView: View {
         HStack(spacing: 16) {
             VStack(spacing: 6) {
                 HStack(spacing: 10) {
-                    Logo(image: entry.teamLogo, league: entry.team.league).frame(width: 52, height: 52)
+                    CircleLogo(image: entry.teamLogo, league: entry.team.league)
                     if let game = entry.game {
-                        Text(game.matchupPrefix).font(.headline).opacity(0.8)
-                        Logo(image: entry.opponentLogo, league: game.league).frame(width: 52, height: 52)
+                        Text(game.matchupPrefix.uppercased()).font(.scoreboard(15)).opacity(0.7)
+                        CircleLogo(image: entry.opponentLogo, league: game.league)
                     }
                 }
                 if entry.game?.state == .live { LiveBadge() }
@@ -191,12 +205,16 @@ private struct MediumView: View {
                     .textCase(.uppercase)
                     .opacity(0.8)
                 if let game = entry.game {
-                    Text("\(entry.team.shortName) \(game.shortMatchup)")
-                        .font(.headline)
+                    Text(game.dayLabel.uppercased())
+                        .font(.caption2.weight(.bold))
+                        .tracking(1)
+                        .opacity(0.75)
+                    Text(game.timeLabel)
+                        .font(.scoreboard(28))
+                        .minimumScaleFactor(0.6)
+                    Text(game.shortMatchup.uppercased())
+                        .font(.scoreboard(15))
                         .lineLimit(1)
-                        .minimumScaleFactor(0.7)
-                    Text("\(game.dayLabel) · \(game.timeLabel)")
-                        .font(.title3.bold())
                         .minimumScaleFactor(0.7)
                     if let venue = game.venue {
                         Text(venue).font(.caption).opacity(0.85).lineLimit(1)

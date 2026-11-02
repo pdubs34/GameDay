@@ -14,6 +14,13 @@ extension Color {
     }
 }
 
+extension Font {
+    /// Heavy, condensed type for matchups and times; reads like a scoreboard.
+    static func scoreboard(_ size: CGFloat) -> Font {
+        .system(size: size, weight: .heavy).width(.condensed)
+    }
+}
+
 extension Team {
     var primaryColor: Color { Color(hex: colorHex) ?? .accentColor }
 
@@ -83,6 +90,11 @@ extension Game {
         case .pre: timeIsKnown ? date.formatted(date: .omitted, time: .shortened) : "TBD"
         }
     }
+
+    /// "NOV", "6", "FRI" for calendar-style date tiles.
+    var monthLabel: String { date.formatted(.dateTime.month(.abbreviated)).uppercased() }
+    var dayNumber: String { date.formatted(.dateTime.day()) }
+    var weekdayLabel: String { date.formatted(.dateTime.weekday(.abbreviated)).uppercased() }
 
     /// e.g. "@ Flyers" or "vs Bruins".
     var shortMatchup: String { "\(matchupPrefix) \(opponent.shortName)" }
