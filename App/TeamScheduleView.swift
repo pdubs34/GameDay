@@ -23,7 +23,7 @@ struct TeamScheduleView: View {
             if games.count > 1 {
                 Section("Upcoming") {
                     ForEach(games.dropFirst()) { game in
-                        GameRow(game: game)
+                        GameRow(game: game, tint: team.backgroundColor) { addToCalendar(game) }
                             .swipeActions {
                                 Button("Add to Calendar", systemImage: "calendar.badge.plus") {
                                     addToCalendar(game)
@@ -164,6 +164,8 @@ private struct NextGameCard: View {
 
 private struct GameRow: View {
     let game: Game
+    let tint: Color
+    let onAddToCalendar: () -> Void
 
     var body: some View {
         HStack(spacing: 12) {
@@ -180,6 +182,14 @@ private struct GameRow: View {
                 Text(game.dayLabel).font(.subheadline)
                 Text(game.timeLabel).font(.caption).foregroundStyle(.secondary)
             }
+            // Borderless so only the icon is tappable, not the whole row.
+            Button(action: onAddToCalendar) {
+                Image(systemName: "calendar.badge.plus")
+                    .font(.title3)
+                    .foregroundStyle(tint)
+            }
+            .buttonStyle(.borderless)
+            .accessibilityLabel("Add \(game.shortMatchup) to Calendar")
         }
     }
 }
