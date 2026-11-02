@@ -68,6 +68,9 @@ private struct FavoriteRow: View {
                 .frame(width: 40, height: 40)
             VStack(alignment: .leading, spacing: 2) {
                 Text(team.name).font(.headline)
+                SportBadge(league: team.league)
+                    .font(.caption.weight(.semibold))
+                    .foregroundStyle(team.backgroundColor)
                 Group {
                     if let nextGame {
                         Text("\(nextGame.shortMatchup) · \(nextGame.dayLabel), \(nextGame.timeLabel)")

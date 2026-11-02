@@ -43,6 +43,20 @@ extension Team {
     }
 }
 
+/// Sport icon plus "NHL" or "Women's Volleyball", so it's clear which sport a team plays.
+struct SportBadge: View {
+    let league: League
+
+    var body: some View {
+        HStack(spacing: 4) {
+            Image(systemName: league.symbol).imageScale(.small)
+            Text(league.badgeLabel)
+        }
+        .lineLimit(1)
+        .accessibilityElement(children: .combine)
+    }
+}
+
 private extension Color {
     func mix(with other: Color, by amount: Double) -> Color {
         if #available(iOS 18.0, *) {

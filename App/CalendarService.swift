@@ -64,6 +64,7 @@ final class CalendarService {
 
     private func fill(_ event: EKEvent, with game: Game, team: Team) {
         event.title = "\(team.league.emoji) \(team.shortName) \(game.matchupPrefix) \(game.opponent.shortName)"
+            + (team.league.isCollege ? " · \(team.league.sportName)" : "")
         if game.timeIsKnown {
             event.isAllDay = false
             event.startDate = game.date
@@ -86,13 +87,13 @@ final class CalendarService {
             return calendar
         }
         if let calendar = store.calendars(for: .event)
-            .first(where: { $0.title == team.name && $0.allowsContentModifications }) {
+            .first(where: { $0.title == team.fullName && $0.allowsContentModifications }) {
             UserDefaults.standard.set(calendar.calendarIdentifier, forKey: key)
             return calendar
         }
 
         let calendar = EKCalendar(for: .event, eventStore: store)
-        calendar.title = team.name
+        calendar.title = team.fullName
         calendar.cgColor = UIColor(team.primaryColor).cgColor
         guard let source = store.defaultCalendarForNewEvents?.source
             ?? store.sources.first(where: { $0.sourceType == .local })

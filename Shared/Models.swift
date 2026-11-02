@@ -1,7 +1,8 @@
 import Foundation
 
 enum League: String, CaseIterable, Codable, Identifiable, Hashable {
-    case nhl, nfl, nba, mlb, wnba, mls, collegeFootball, mensCollegeBasketball
+    case nhl, nfl, nba, mlb, wnba, mls
+    case collegeFootball, mensCollegeBasketball, womensCollegeVolleyball, mensCollegeVolleyball
 
     var id: String { rawValue }
 
@@ -16,6 +17,8 @@ enum League: String, CaseIterable, Codable, Identifiable, Hashable {
         case .mls: "soccer/usa.1"
         case .collegeFootball: "football/college-football"
         case .mensCollegeBasketball: "basketball/mens-college-basketball"
+        case .womensCollegeVolleyball: "volleyball/womens-college-volleyball"
+        case .mensCollegeVolleyball: "volleyball/mens-college-volleyball"
         }
     }
 
@@ -25,7 +28,16 @@ enum League: String, CaseIterable, Codable, Identifiable, Hashable {
         case .mls: "soccer"
         case .collegeFootball: "college-football"
         case .mensCollegeBasketball: "mens-college-basketball"
+        case .womensCollegeVolleyball: "womens-college-volleyball"
+        case .mensCollegeVolleyball: "mens-college-volleyball"
         default: rawValue
+        }
+    }
+
+    var isCollege: Bool {
+        switch self {
+        case .collegeFootball, .mensCollegeBasketball, .womensCollegeVolleyball, .mensCollegeVolleyball: true
+        default: false
         }
     }
 
@@ -38,9 +50,29 @@ enum League: String, CaseIterable, Codable, Identifiable, Hashable {
         case .wnba: "WNBA"
         case .mls: "MLS"
         case .collegeFootball: "College Football"
-        case .mensCollegeBasketball: "College Basketball"
+        case .mensCollegeBasketball: "Men's College Basketball"
+        case .womensCollegeVolleyball: "Women's College Volleyball"
+        case .mensCollegeVolleyball: "Men's College Volleyball"
         }
     }
+
+    /// The sport itself, e.g. "Hockey" or "Women's Volleyball". College schools
+    /// field teams in many sports, so this is what tells them apart.
+    var sportName: String {
+        switch self {
+        case .nhl: "Hockey"
+        case .nfl, .collegeFootball: "Football"
+        case .nba, .wnba: "Basketball"
+        case .mensCollegeBasketball: "Men's Basketball"
+        case .mlb: "Baseball"
+        case .mls: "Soccer"
+        case .womensCollegeVolleyball: "Women's Volleyball"
+        case .mensCollegeVolleyball: "Men's Volleyball"
+        }
+    }
+
+    /// Compact label for badges: the league for pros ("NHL"), the sport for college.
+    var badgeLabel: String { isCollege ? sportName : displayName }
 
     var symbol: String {
         switch self {
@@ -49,6 +81,7 @@ enum League: String, CaseIterable, Codable, Identifiable, Hashable {
         case .nba, .wnba, .mensCollegeBasketball: "basketball"
         case .mlb: "baseball"
         case .mls: "soccerball"
+        case .womensCollegeVolleyball, .mensCollegeVolleyball: "volleyball"
         }
     }
 
@@ -59,6 +92,7 @@ enum League: String, CaseIterable, Codable, Identifiable, Hashable {
         case .nba, .wnba, .mensCollegeBasketball: "🏀"
         case .mlb: "⚾️"
         case .mls: "⚽️"
+        case .womensCollegeVolleyball, .mensCollegeVolleyball: "🏐"
         }
     }
 
@@ -66,7 +100,7 @@ enum League: String, CaseIterable, Codable, Identifiable, Hashable {
     var typicalDuration: TimeInterval {
         switch self {
         case .nfl, .collegeFootball, .mlb: 3.5 * 3600
-        case .mls: 2 * 3600
+        case .mls, .womensCollegeVolleyball, .mensCollegeVolleyball: 2 * 3600
         default: 2.75 * 3600
         }
     }
@@ -84,6 +118,10 @@ struct Team: Codable, Hashable, Identifiable {
 
     /// Stable id across leagues, e.g. `nhl:30`.
     var id: String { "\(league.rawValue):\(espnID)" }
+
+    /// Adds the sport for college teams, since "Minnesota Golden Gophers"
+    /// alone could mean football, basketball, or volleyball.
+    var fullName: String { league.isCollege ? "\(name) \(league.sportName)" : name }
 
     static let minnesotaWild = Team(
         league: .nhl,

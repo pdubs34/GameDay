@@ -48,7 +48,11 @@ struct TeamScheduleView: View {
             } else if failed {
                 ContentUnavailableView("Couldn't Load Schedule", systemImage: "wifi.slash")
             } else if games.isEmpty {
-                ContentUnavailableView("No Upcoming Games", systemImage: team.league.symbol)
+                ContentUnavailableView(
+                    "No Upcoming Games",
+                    systemImage: team.league.symbol,
+                    description: Text("\(team.fullName) has no games scheduled right now.")
+                )
             }
         }
         .navigationTitle(team.shortName)
@@ -101,7 +105,7 @@ struct TeamScheduleView: View {
         defer { addingAll = false }
         do {
             let result = try await CalendarService.shared.addAll(games, for: team)
-            var parts = ["Added \(result.added) game\(result.added == 1 ? "" : "s") to the “\(team.name)” calendar."]
+            var parts = ["Added \(result.added) game\(result.added == 1 ? "" : "s") to the “\(team.fullName)” calendar."]
             if result.updated > 0 { parts.append("Updated \(result.updated) with new times.") }
             message = parts.joined(separator: " ")
         } catch {
@@ -118,11 +122,14 @@ private struct NextGameCard: View {
     var body: some View {
         VStack(spacing: 16) {
             HStack {
-                Text(game.state == .live ? "LIVE NOW" : "NEXT GAME")
+                SportBadge(league: team.league)
                     .font(.caption.weight(.bold))
+                    .textCase(.uppercase)
                     .tracking(1)
                 Spacer()
-                if game.state == .pre {
+                if game.state == .live {
+                    Text("LIVE").font(.caption.weight(.heavy))
+                } else {
                     Text(game.date, style: .relative)
                         .font(.caption.monospacedDigit())
                 }

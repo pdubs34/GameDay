@@ -19,7 +19,11 @@ struct TeamEntity: AppEntity {
     var id: String { team.id }
 
     var displayRepresentation: DisplayRepresentation {
-        DisplayRepresentation(title: "\(team.name)", subtitle: "\(team.league.displayName)")
+        DisplayRepresentation(
+            title: "\(team.fullName)",
+            subtitle: "\(team.league.displayName)",
+            image: DisplayRepresentation.Image(systemName: team.league.symbol)
+        )
     }
 }
 

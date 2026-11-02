@@ -20,8 +20,15 @@ struct TeamPickerView: View {
         NavigationStack {
             List {
                 Picker("League", selection: $league) {
-                    ForEach(League.allCases) { league in
-                        Label(league.displayName, systemImage: league.symbol).tag(league)
+                    Section("Pro") {
+                        ForEach(League.allCases.filter { !$0.isCollege }) { league in
+                            Label("\(league.displayName) (\(league.sportName))", systemImage: league.symbol).tag(league)
+                        }
+                    }
+                    Section("College") {
+                        ForEach(League.allCases.filter(\.isCollege)) { league in
+                            Label(league.displayName, systemImage: league.symbol).tag(league)
+                        }
                     }
                 }
 

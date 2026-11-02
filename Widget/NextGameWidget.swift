@@ -135,7 +135,14 @@ private struct SmallView: View {
                 Logo(image: entry.teamLogo, league: entry.team.league)
                     .frame(width: 40, height: 40)
                 Spacer()
-                if entry.game?.state == .live { LiveBadge() }
+                if entry.game?.state == .live {
+                    LiveBadge()
+                } else {
+                    Image(systemName: entry.team.league.symbol)
+                        .font(.footnote.weight(.semibold))
+                        .opacity(0.8)
+                        .accessibilityLabel(entry.team.league.sportName)
+                }
             }
             Spacer(minLength: 0)
             if let game = entry.game {
@@ -179,6 +186,10 @@ private struct MediumView: View {
             }
 
             VStack(alignment: .leading, spacing: 3) {
+                SportBadge(league: entry.team.league)
+                    .font(.caption2.weight(.bold))
+                    .textCase(.uppercase)
+                    .opacity(0.8)
                 if let game = entry.game {
                     Text("\(entry.team.shortName) \(game.shortMatchup)")
                         .font(.headline)
