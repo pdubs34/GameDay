@@ -8,8 +8,9 @@ Defaults to the Minnesota Wild.
 ## Features
 
 - **Favorites** across the NHL, NFL, NBA, MLB, WNBA, and MLS, plus college football, men's basketball, and women's and men's volleyball. Every team shows its sport, so a school's football and volleyball teams are easy to tell apart
-- **Next Game widget** (small, medium, and Lock Screen sizes): each widget can show a different team.
-  Long-press the widget, choose **Edit Widget**, then pick a team.
+- **Next Game widget**: long-press it, choose **Edit Widget**, and pick up to 5 teams.
+  - Home Screen (small, medium): tap the arrows to flip between your teams.
+  - Lock Screen (rectangular, circular, inline): shows whichever of your teams plays next.
 - **Add to Calendar**: add one game with the system sheet, or tap the calendar button on a team page to add
   the whole remaining schedule to a calendar named after the team. Running it again updates
   changed start times instead of creating duplicates.

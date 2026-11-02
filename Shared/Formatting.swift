@@ -99,3 +99,14 @@ extension Game {
     /// e.g. "@ Flyers" or "vs Bruins".
     var shortMatchup: String { "\(matchupPrefix) \(opponent.shortName)" }
 }
+
+extension Game {
+    /// Tiny label for round Lock Screen widgets: "7 PM" today, "LIVE", or "TUE".
+    var compactWhen: String {
+        if state == .live { return "LIVE" }
+        if Calendar.current.isDateInToday(date), timeIsKnown {
+            return date.formatted(.dateTime.hour())
+        }
+        return weekdayLabel
+    }
+}

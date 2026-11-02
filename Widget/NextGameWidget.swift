@@ -10,12 +10,12 @@ struct GameDayWidgetBundle: WidgetBundle {
 
 struct NextGameWidget: Widget {
     var body: some WidgetConfiguration {
-        AppIntentConfiguration(kind: "NextGameWidget", intent: SelectTeamIntent.self, provider: NextGameProvider()) { entry in
+        AppIntentConfiguration(kind: "NextGameWidget", intent: SelectTeamsIntent.self, provider: NextGameProvider()) { entry in
             NextGameWidgetView(entry: entry)
         }
         .configurationDisplayName("Next Game")
-        .description("Shows your team's next game.")
-        .supportedFamilies([.systemSmall, .systemMedium, .accessoryRectangular, .accessoryInline])
+        .description("Shows your teams' next games. Tap the arrows to flip between teams.")
+        .supportedFamilies([.systemSmall, .systemMedium, .accessoryRectangular, .accessoryCircular, .accessoryInline])
     }
 }
 
@@ -28,22 +28,45 @@ struct NextGameEntry: TimelineEntry {
     var teamLogo: UIImage?
     var opponentLogo: UIImage?
     var failed = false
+    /// Set on home-screen widgets showing more than one team.
+    var page: Page?
+
+    struct Page {
+        let index: Int
+        let count: Int
+        let widgetKey: String
+    }
 }
 
 struct NextGameProvider: AppIntentTimelineProvider {
     func placeholder(in context: Context) -> NextGameEntry { .preview }
 
-    func snapshot(for configuration: SelectTeamIntent, in context: Context) async -> NextGameEntry {
-        context.isPreview ? .preview : await entry(for: configuration)
+    func snapshot(for configuration: SelectTeamsIntent, in context: Context) async -> NextGameEntry {
+        context.isPreview ? .preview : await entry(for: configuration, family: context.family)
     }
 
-    func timeline(for configuration: SelectTeamIntent, in context: Context) async -> Timeline<NextGameEntry> {
-        let entry = await entry(for: configuration)
+    func timeline(for configuration: SelectTeamsIntent, in context: Context) async -> Timeline<NextGameEntry> {
+        let entry = await entry(for: configuration, family: context.family)
         return Timeline(entries: [entry], policy: .after(nextRefresh(after: entry)))
     }
 
-    private func entry(for configuration: SelectTeamIntent) async -> NextGameEntry {
-        let team = configuration.team?.team ?? FavoritesStore.load().first ?? .minnesotaWild
+    private func entry(for configuration: SelectTeamsIntent, family: WidgetFamily) async -> NextGameEntry {
+        let teams = configuration.resolvedTeams
+        switch family {
+        case .accessoryRectangular, .accessoryCircular, .accessoryInline:
+            return await soonestEntry(among: teams)
+        default:
+            let key = WidgetPager.key(for: teams)
+            let index = WidgetPager.index(for: key, count: teams.count)
+            var entry = await entry(for: teams[index])
+            if teams.count > 1 {
+                entry.page = .init(index: index, count: teams.count, widgetKey: key)
+            }
+            return entry
+        }
+    }
+
+    private func entry(for team: Team) async -> NextGameEntry {
         do {
             let game = try await ESPNClient.shared.nextGame(for: team)
             async let teamLogo = loadLogo(team.logoURL)
@@ -52,6 +75,29 @@ struct NextGameProvider: AppIntentTimelineProvider {
         } catch {
             return NextGameEntry(date: .now, team: team, game: nil, failed: true)
         }
+    }
+
+    /// Lock Screen widgets are too small for arrows, so they show whichever
+    /// configured team plays next (a live game counts as soonest).
+    private func soonestEntry(among teams: [Team]) async -> NextGameEntry {
+        let results = await withTaskGroup(of: (Int, Game?).self) { group in
+            for (offset, team) in teams.enumerated() {
+                group.addTask { (offset, try? await ESPNClient.shared.nextGame(for: team)) }
+            }
+            var results: [(Int, Game?)] = []
+            for await result in group { results.append(result) }
+            return results
+        }
+        let soonest = results
+            .compactMap { offset, game in game.map { (offset, $0) } }
+            .min { a, b in
+                if (a.1.state == .live) != (b.1.state == .live) { return a.1.state == .live }
+                return a.1.date < b.1.date
+            }
+        guard let (offset, game) = soonest else {
+            return NextGameEntry(date: .now, team: teams[0], game: nil, failed: results.isEmpty)
+        }
+        return NextGameEntry(date: .now, team: teams[offset], game: game)
     }
 
     /// Refresh at puck drop (to show LIVE), every 15 min during a game so the
@@ -85,6 +131,8 @@ struct NextGameWidgetView: View {
 
     var body: some View {
         content
+            .id(entry.team.id)
+            .transition(.push(from: .trailing))
             .containerBackground(for: .widget) {
                 if family == .systemSmall || family == .systemMedium {
                     entry.team.cardGradient
@@ -97,6 +145,7 @@ struct NextGameWidgetView: View {
         switch family {
         case .systemMedium: MediumView(entry: entry)
         case .accessoryRectangular: RectangularView(entry: entry)
+        case .accessoryCircular: CircularView(entry: entry)
         case .accessoryInline: InlineView(entry: entry)
         default: SmallView(entry: entry)
         }
@@ -128,6 +177,36 @@ private struct CircleLogo: View {
     }
 }
 
+/// Arrow buttons and page dots for flipping between a widget's teams.
+private struct Pager: View {
+    let page: NextGameEntry.Page
+
+    var body: some View {
+        HStack(spacing: 6) {
+            arrow("chevron.left", step: -1)
+            HStack(spacing: 3) {
+                ForEach(0..<page.count, id: \.self) { index in
+                    Circle()
+                        .frame(width: 5, height: 5)
+                        .opacity(index == page.index ? 1 : 0.4)
+                }
+            }
+            arrow("chevron.right", step: 1)
+        }
+    }
+
+    private func arrow(_ symbol: String, step: Int) -> some View {
+        Button(intent: FlipTeamIntent(widgetKey: page.widgetKey, step: step)) {
+            Image(systemName: symbol)
+                .font(.system(size: 11, weight: .heavy))
+                .frame(width: 24, height: 24)
+                .background(.white.opacity(0.2), in: Circle())
+        }
+        .buttonStyle(.plain)
+        .accessibilityLabel(step > 0 ? "Next team" : "Previous team")
+    }
+}
+
 private struct LiveBadge: View {
     var body: some View {
         Text("LIVE")
@@ -149,20 +228,21 @@ private struct SmallView: View {
                     .frame(width: 42, height: 42)
                     .background(.white, in: Circle())
                 Spacer()
-                if entry.game?.state == .live {
+                if let page = entry.page {
+                    Pager(page: page)
+                } else if entry.game?.state == .live {
                     LiveBadge()
-                } else {
-                    Image(systemName: entry.team.league.symbol)
-                        .font(.footnote.weight(.semibold))
-                        .opacity(0.8)
-                        .accessibilityLabel(entry.team.league.sportName)
                 }
             }
             Spacer(minLength: 0)
             if let game = entry.game {
-                Text(game.dayLabel.uppercased())
-                    .font(.caption2.weight(.semibold))
-                    .opacity(0.8)
+                HStack(spacing: 4) {
+                    Image(systemName: entry.team.league.symbol)
+                        .accessibilityLabel(entry.team.league.sportName)
+                    Text(game.state == .live ? "LIVE NOW" : game.dayLabel.uppercased())
+                }
+                .font(.caption2.weight(.semibold))
+                .opacity(0.8)
                 Text(game.timeLabel)
                     .font(.scoreboard(30))
                     .minimumScaleFactor(0.6)
@@ -197,6 +277,7 @@ private struct MediumView: View {
                     }
                 }
                 if entry.game?.state == .live { LiveBadge() }
+                if let page = entry.page { Pager(page: page) }
             }
 
             VStack(alignment: .leading, spacing: 3) {
@@ -260,6 +341,30 @@ private struct RectangularView: View {
     }
 }
 
+private struct CircularView: View {
+    let entry: NextGameEntry
+
+    var body: some View {
+        ZStack {
+            AccessoryWidgetBackground()
+            VStack(spacing: 0) {
+                Image(systemName: entry.team.league.symbol)
+                    .font(.system(size: 11, weight: .semibold))
+                Text(entry.team.abbreviation)
+                    .font(.system(size: 13, weight: .heavy).width(.condensed))
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.6)
+                Text(entry.game?.compactWhen ?? "—")
+                    .font(.system(size: 10, weight: .semibold))
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.6)
+            }
+            .padding(4)
+        }
+        .accessibilityLabel(entry.game.map { "\(entry.team.name) \($0.shortMatchup), \($0.dayLabel) \($0.timeLabel)" } ?? entry.team.name)
+    }
+}
+
 private struct InlineView: View {
     let entry: NextGameEntry
 
@@ -295,6 +400,12 @@ extension NextGameEntry {
 }
 
 #Preview(as: .systemSmall) {
+    NextGameWidget()
+} timeline: {
+    NextGameEntry.preview
+}
+
+#Preview(as: .accessoryCircular) {
     NextGameWidget()
 } timeline: {
     NextGameEntry.preview
