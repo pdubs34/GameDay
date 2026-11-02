@@ -1,0 +1,473 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1317950A8B9A9B0D3E9560BE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2BACED17C3CF9F22C41EF8 /* ContentView.swift */; };
+		19D95B13628EA86C2420712C /* ESPNClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1093846A2B37BF3AB2116B5 /* ESPNClient.swift */; };
+		3D69773395BB580D4D2EB390 /* CalendarService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0354FDF03E896283F5ABA077 /* CalendarService.swift */; };
+		551CB5CCF1C5A2C729E1C0A4 /* NextGameWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13DA4F4B0A9825D0CF45688 /* NextGameWidget.swift */; };
+		5ED4E5CEBCA7A537E35C09FE /* TeamSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064545F953CCC0FBABDDD88B /* TeamSelection.swift */; };
+		67CAE113987D202013EA99FC /* FavoritesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D164ADE8C60B6F02EB1D97 /* FavoritesStore.swift */; };
+		6D8AF4ACD2C059A8B4775F7D /* TeamPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358C42A1AFFE663601CF405A /* TeamPickerView.swift */; };
+		734E3EDF0BA51B4108AC250C /* ESPNClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1093846A2B37BF3AB2116B5 /* ESPNClient.swift */; };
+		7BB9F133D02F1234006C1408 /* Formatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6BE73C590AEB96D7354531 /* Formatting.swift */; };
+		9BF2836767298AFA1FF88CB6 /* GameDayWidget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 95EDE08537EB740ACCF611C6 /* GameDayWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		C29143932106D340CFD775CB /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0F1DD2FEC950C9067C2789 /* Models.swift */; };
+		CCFC45D0E111ED70818A159F /* GameDayApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE0F897B5F0CD8B4D794FFC /* GameDayApp.swift */; };
+		DB97A1E353C48AA6E128242A /* FavoritesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D164ADE8C60B6F02EB1D97 /* FavoritesStore.swift */; };
+		E007DA973B037D76FD5B5F74 /* TeamScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C4932282125F5AD17D778A /* TeamScheduleView.swift */; };
+		E6E1B873114CBCDB2AF401BA /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0F1DD2FEC950C9067C2789 /* Models.swift */; };
+		FDF690AC8A26E2571DAFE3BB /* Formatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6BE73C590AEB96D7354531 /* Formatting.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2D62847CDBDC55445811C23F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F10597D2DFA8FF293F0A8C21 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A79AB1DD426FD8BA62AC006E;
+			remoteInfo = GameDayWidget;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		7E1BEA7784587649C1C1B82D /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				9BF2836767298AFA1FF88CB6 /* GameDayWidget.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		0354FDF03E896283F5ABA077 /* CalendarService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarService.swift; sourceTree = "<group>"; };
+		064545F953CCC0FBABDDD88B /* TeamSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSelection.swift; sourceTree = "<group>"; };
+		08D164ADE8C60B6F02EB1D97 /* FavoritesStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesStore.swift; sourceTree = "<group>"; };
+		23FBECA3CAD9853B776A2680 /* GameDay.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = GameDay.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		302E52D8B9BAAE0DF3A986D0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		358C42A1AFFE663601CF405A /* TeamPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamPickerView.swift; sourceTree = "<group>"; };
+		3F0F1DD2FEC950C9067C2789 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		4D67043EB73F2DEBDABC96DD /* GameDayWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GameDayWidget.entitlements; sourceTree = "<group>"; };
+		8FE0F897B5F0CD8B4D794FFC /* GameDayApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDayApp.swift; sourceTree = "<group>"; };
+		95EDE08537EB740ACCF611C6 /* GameDayWidget.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = GameDayWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		A8C4932282125F5AD17D778A /* TeamScheduleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamScheduleView.swift; sourceTree = "<group>"; };
+		AF6BE73C590AEB96D7354531 /* Formatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatting.swift; sourceTree = "<group>"; };
+		C13DA4F4B0A9825D0CF45688 /* NextGameWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextGameWidget.swift; sourceTree = "<group>"; };
+		CB2BACED17C3CF9F22C41EF8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		D0D60E79879565405F08FBE6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		D1093846A2B37BF3AB2116B5 /* ESPNClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ESPNClient.swift; sourceTree = "<group>"; };
+		EC18DF045333412B4699FE4B /* GameDay.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GameDay.entitlements; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		1BBFFC8C6FF0521A2619CDCD /* Widget */ = {
+			isa = PBXGroup;
+			children = (
+				4D67043EB73F2DEBDABC96DD /* GameDayWidget.entitlements */,
+				302E52D8B9BAAE0DF3A986D0 /* Info.plist */,
+				C13DA4F4B0A9825D0CF45688 /* NextGameWidget.swift */,
+				064545F953CCC0FBABDDD88B /* TeamSelection.swift */,
+			);
+			path = Widget;
+			sourceTree = "<group>";
+		};
+		26A19BC833B28189B3F64ECD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				23FBECA3CAD9853B776A2680 /* GameDay.app */,
+				95EDE08537EB740ACCF611C6 /* GameDayWidget.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		94C651002362CEFE4C930D2A /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				D1093846A2B37BF3AB2116B5 /* ESPNClient.swift */,
+				08D164ADE8C60B6F02EB1D97 /* FavoritesStore.swift */,
+				AF6BE73C590AEB96D7354531 /* Formatting.swift */,
+				3F0F1DD2FEC950C9067C2789 /* Models.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		DA38EC8FE98B5BEC0FA370D9 = {
+			isa = PBXGroup;
+			children = (
+				ECF67C172A2BEC112AD256D2 /* App */,
+				94C651002362CEFE4C930D2A /* Shared */,
+				1BBFFC8C6FF0521A2619CDCD /* Widget */,
+				26A19BC833B28189B3F64ECD /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		ECF67C172A2BEC112AD256D2 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				0354FDF03E896283F5ABA077 /* CalendarService.swift */,
+				CB2BACED17C3CF9F22C41EF8 /* ContentView.swift */,
+				EC18DF045333412B4699FE4B /* GameDay.entitlements */,
+				8FE0F897B5F0CD8B4D794FFC /* GameDayApp.swift */,
+				D0D60E79879565405F08FBE6 /* Info.plist */,
+				358C42A1AFFE663601CF405A /* TeamPickerView.swift */,
+				A8C4932282125F5AD17D778A /* TeamScheduleView.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		0C0B9BB9129971CF4C8E824E /* GameDay */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3A83FA1ABDFBAF68E860047B /* Build configuration list for PBXNativeTarget "GameDay" */;
+			buildPhases = (
+				66F1B67162DFB9733C359B3C /* Sources */,
+				7E1BEA7784587649C1C1B82D /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				779D428D2A9E3DD2ED99FD5A /* PBXTargetDependency */,
+			);
+			name = GameDay;
+			packageProductDependencies = (
+			);
+			productName = GameDay;
+			productReference = 23FBECA3CAD9853B776A2680 /* GameDay.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A79AB1DD426FD8BA62AC006E /* GameDayWidget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9F18687FFA524B89397F9E6C /* Build configuration list for PBXNativeTarget "GameDayWidget" */;
+			buildPhases = (
+				1E5F7BBE6AB3EC9D814B7D02 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GameDayWidget;
+			packageProductDependencies = (
+			);
+			productName = GameDayWidget;
+			productReference = 95EDE08537EB740ACCF611C6 /* GameDayWidget.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F10597D2DFA8FF293F0A8C21 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					0C0B9BB9129971CF4C8E824E = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+					};
+					A79AB1DD426FD8BA62AC006E = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 779F650121A09D7A781DB14E /* Build configuration list for PBXProject "GameDay" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = DA38EC8FE98B5BEC0FA370D9;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 26A19BC833B28189B3F64ECD /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				0C0B9BB9129971CF4C8E824E /* GameDay */,
+				A79AB1DD426FD8BA62AC006E /* GameDayWidget */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1E5F7BBE6AB3EC9D814B7D02 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				734E3EDF0BA51B4108AC250C /* ESPNClient.swift in Sources */,
+				DB97A1E353C48AA6E128242A /* FavoritesStore.swift in Sources */,
+				FDF690AC8A26E2571DAFE3BB /* Formatting.swift in Sources */,
+				E6E1B873114CBCDB2AF401BA /* Models.swift in Sources */,
+				551CB5CCF1C5A2C729E1C0A4 /* NextGameWidget.swift in Sources */,
+				5ED4E5CEBCA7A537E35C09FE /* TeamSelection.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		66F1B67162DFB9733C359B3C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3D69773395BB580D4D2EB390 /* CalendarService.swift in Sources */,
+				1317950A8B9A9B0D3E9560BE /* ContentView.swift in Sources */,
+				19D95B13628EA86C2420712C /* ESPNClient.swift in Sources */,
+				67CAE113987D202013EA99FC /* FavoritesStore.swift in Sources */,
+				7BB9F133D02F1234006C1408 /* Formatting.swift in Sources */,
+				CCFC45D0E111ED70818A159F /* GameDayApp.swift in Sources */,
+				C29143932106D340CFD775CB /* Models.swift in Sources */,
+				6D8AF4ACD2C059A8B4775F7D /* TeamPickerView.swift in Sources */,
+				E007DA973B037D76FD5B5F74 /* TeamScheduleView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		779D428D2A9E3DD2ED99FD5A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A79AB1DD426FD8BA62AC006E /* GameDayWidget */;
+			targetProxy = 2D62847CDBDC55445811C23F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		1B0381071DE4E56BBA298EB8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Widget/GameDayWidget.entitlements;
+				INFOPLIST_FILE = Widget/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.pdubs34.GameDay.Widget;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		274B01A230038235E53FD399 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = App/GameDay.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = App/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.pdubs34.GameDay;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		52BEA95C22C772B2BC0849F8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		71C19942860C68A6C6B89F5C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = App/GameDay.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = App/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.pdubs34.GameDay;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8F3BE4FF43A14F99424F777F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Widget/GameDayWidget.entitlements;
+				INFOPLIST_FILE = Widget/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.pdubs34.GameDay.Widget;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C1637C96AE271956763499EE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3A83FA1ABDFBAF68E860047B /* Build configuration list for PBXNativeTarget "GameDay" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				71C19942860C68A6C6B89F5C /* Debug */,
+				274B01A230038235E53FD399 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		779F650121A09D7A781DB14E /* Build configuration list for PBXProject "GameDay" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C1637C96AE271956763499EE /* Debug */,
+				52BEA95C22C772B2BC0849F8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		9F18687FFA524B89397F9E6C /* Build configuration list for PBXNativeTarget "GameDayWidget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8F3BE4FF43A14F99424F777F /* Debug */,
+				1B0381071DE4E56BBA298EB8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F10597D2DFA8FF293F0A8C21 /* Project object */;
+}
